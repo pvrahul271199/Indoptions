@@ -1,0 +1,137 @@
+<%- include('./partials/header') %>
+
+    <head>
+        <link rel="stylesheet" href="../public/css/basket.css">
+    </head>
+
+    <body>
+        <%- include('./partials/navbar') %>
+
+
+            <div class="container d-flex justify-content-start align-items-center flex-column">
+                <div class="head"><i class="fas fa-shopping-cart"></i> My Basket (<%= person.length %>)
+                </div>
+                <% for(let i=0; i< person.length; i++) { %>
+
+                    <div class="card my-2">
+                        <div class="card-body">
+                            <div class="table-responsive-sm">
+                                <table class="table table-borderless table-hover text-center">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Script</th>
+                                            <th scope="col">Strike</th>
+                                            <th scope="col">Option</th>
+                                            <th scope="col">Order</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">SL</th>
+                                            <th scope="col">Sl-Type</th>
+
+                                        </tr>
+                                    </thead>
+ <tbody>
+        <% for(let j=0; j<person[i].script.length; j++) {%>
+            <% if(person[i].script[j] !="" ) {%>
+                <tr>
+                    <th scope="row">
+                        <%= person[i].script[j] %>
+                    </th>
+
+                    <% if(person[i].script[j]=="NIFTY" ) {%>
+                        <td>
+                            <%= person[i].strikeprice[(2*j) + 1] %>
+                        </td>
+
+                    <% }else { %>
+                        <td>
+                            <%= person[i].strikeprice[(2*j)] %>
+                        </td>
+                    <% } %>
+
+                    <% if(person[i].option[j]) {%>
+                        <td>
+                            <%= person[i].option[j] %>
+                        </td>
+                    <% } else {%>
+
+                        <td>NA</td>
+                    <% } %>
+                    
+                    <% if(person[i].order[j]) {%>
+                        <td>
+                        <%= person[i].order[j] %>
+                        </td>
+
+                    <% } else {%>
+
+                        <td>NA</td>
+                    <% } %>
+
+                    <% if(person[i].ordertype[j]) {%>
+                        <td>
+                            <%= person[i].ordertype[j]%>
+                        </td>
+
+                    <% } else {%>
+                        <td>NA
+                        </td>
+                    <% } %>
+
+                    <% if(person[i].stoploss[j]) {%>
+                        <td>
+                            <%= person[i].stoploss[j] %>
+                        </td>
+                    <% } else {%>
+                        <td>NA</td>
+                    <% } %>
+
+                    <% if(person[i].sltype[j]) {%>
+                        <td>
+                            <%= person[i].sltype[j] %>
+                        </td>
+                        <% } else {%>
+                            <td> NA</td>
+                    <% } %>
+
+        
+        
+                </tr>
+            <% } %>
+        <% } %>
+
+ </tbody>
+ </table>
+ </div>
+
+<div class="icons">
+                        <div class="edit mx-2">
+                            <a href="/edit/<%= person[i]._id %> "><button href="#" type="submit"
+                                    class="btn btn-warning"><i class="far fa-edit"></i></button></a>
+                        </div>
+                        <div class="delete">
+                            <form action="/delete/<%= person[i]._id %>?_method=DELETE" method="POST">
+                                <button href="#" type="submit" class="btn btn-danger"><i
+                                        class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </div>
+                    </div>
+
+ </div>
+ </div>
+
+
+                    
+            
+            <% } %>
+</div>
+                <div class="row proceed">
+                    <div class="col-8 d-flex justify-content-center align-items-center ">
+                        <button type="button" class="btn btn-success mt-3" style="width: inherit;">Schedule
+                            Trade</button>
+                    </div>
+                </div>
+
+
+                </div>
+
+                <%- include('./partials/footer') %>

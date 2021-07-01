@@ -1,0 +1,38 @@
+
+            <% if(person[i].option[j]) {%>
+                 <td>
+                    <%= person[i].option[j] %>
+                </td>
+            <% } else {%>
+                <td>NA</td>
+            <% } %>
+
+            <% if(person[i].order[j]) {%>
+             <td>
+                 <%= person[i].order[j] %>
+             </td>
+             <% } else {%>
+                 <td>NA</td>
+            <% } %>
+            <% if(person[i].ordertype[j]) {%>
+            <td>
+                <%= person[i].ordertype[j]%>
+            </td>
+            <% } else {%>
+            <td>NA
+            </td>
+            <% } %>
+            <% if(person[i].stoploss[j]) {%>
+            <td>
+                <%= person[i].stoploss[j] %>
+            </td>
+            <% } else {%>
+            <td>NA</td>
+            <% } %>
+            <% if(person[i].sltype[j]) {%>
+            <td>
+                <%= person[i].sltype[j] %>
+            </td>
+            <% } else {%>
+                <td> NA</td>
+            <% } %>

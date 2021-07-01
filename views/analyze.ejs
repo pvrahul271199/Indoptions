@@ -1,0 +1,458 @@
+<%- include('./partials/header') %>
+
+    <head>
+        <link rel="stylesheet" href="../public/css/analyze.css">
+    </head>
+
+    <body>
+        <%- include('./partials/navbar') %>
+            <div class="container my-4 min-vh-100">
+                <div class="details d-flex justify-content-center align-items-center flex-column">
+                    <img src="<%= user.photos[0].value %>" alt="">
+                    <h2 class="mt-2 mb-5">Welcome <%= user.displayName %>
+                    </h2>
+                    <!-- <p>Login Id  user.id
+            </p> -->
+                </div>
+                <form action="/analyze" method="post">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <!-- <label for="script" class="pb-2"></label> -->
+                            <select name="script" class="form-control script">
+                                <option value="" selected>Script</option>
+                                <option value="NIFTY" >NIFTY</option>
+                                <option value="BANKNIFTY">BANKNIFTY</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <label for="strikeprice" class="pb-2">Strike Price</label> -->
+                            <select name="strikeprice" class="form-control bnstrikeprice">
+                                <option value="" selected>Strike Price</option>
+                                <option value="ATM - 1000">ATM - 1000</option>
+                                <option value="ATM - 900">ATM - 900</option>
+                                <option value="ATM - 800">ATM - 800</option>
+                                <option value="ATM - 700">ATM - 700</option>
+                                <option value="ATM - 600">ATM - 600</option>
+                                <option value="ATM - 500">ATM - 500</option>
+                                <option value="ATM - 400">ATM - 400</option>
+                                <option value="ATM - 300">ATM - 300</option>
+                                <option value="ATM - 200">ATM - 200</option>
+                                <option value="ATM - 100">ATM - 100</option>
+                                <option value="ATM">ATM</option>
+                                <option value="ATM + 100">ATM + 100</option>
+                                <option value="ATM + 200">ATM + 200</option>
+                                <option value="ATM + 300">ATM + 300</option>
+                                <option value="ATM + 400">ATM + 400</option>
+                                <option value="ATM + 500">ATM + 500</option>
+                                <option value="ATM + 600">ATM + 600</option>
+                                <option value="ATM + 700">ATM + 700</option>
+                                <option value="ATM + 800">ATM + 800</option>
+                                <option value="ATM + 900">ATM + 900</option>
+                                <option value="ATM + 1000">ATM + 1000</option>
+                            </select>
+                            <select name="strikeprice" class="form-control niftystrikeprice hide">
+                                <option value="" selected>Strike Price</option>
+                                <option value="ATM - 500">ATM - 500</option>
+                                <option value="ATM - 450">ATM - 450</option>
+                                <option value="ATM - 400">ATM - 400</option>
+                                <option value="ATM - 350">ATM - 350</option>
+                                <option value="ATM - 300">ATM - 300</option>
+                                <option value="ATM - 250">ATM - 250</option>
+                                <option value="ATM - 200">ATM - 200</option>
+                                <option value="ATM - 150">ATM - 150</option>
+                                <option value="ATM - 100">ATM - 100</option>
+                                <option value="ATM - 50">ATM - 50</option>
+                                <option value="ATM">ATM</option>
+                                <option value="ATM + 50">ATM + 50</option>
+                                <option value="ATM + 100">ATM + 100</option>
+                                <option value="ATM + 150">ATM + 150</option>
+                                <option value="ATM + 200">ATM + 200</option>
+                                <option value="ATM + 250">ATM + 250</option>
+                                <option value="ATM + 300">ATM + 300</option>
+                                <option value="ATM + 350">ATM + 350</option>
+                                <option value="ATM + 400">ATM + 400</option>
+                                <option value="ATM + 450">ATM + 450</option>
+                                <option value="ATM + 500">ATM + 500</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <!-- <label for="option" class="pb-2"></label> -->
+                            <select name="option" class="form-control" id="option">
+                                <option value="" selected>Type</option>
+                                <option value="CE">CE</option>
+                                <option value="PE">PE</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <!-- <label for="order" class="pb-2"></label> -->
+                            <select name="order" class="form-control" id="order">
+                                <option value="" selected>Order</option>
+                                <option value="BUY">BUY</option>
+                                <option value="SELL">SELL</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <label for="ordertype" class="pb-2">/label> -->
+                            <select name="ordertype" class="form-control" id="ordertype">
+                                <option value="" selected>Order Type</option>
+                                <option value="Intraday">Intraday</option>
+                                <option value="Normal">Normal</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" name="stoploss" class="form-control" placeholder="SL in Points">
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <label for="sltype" class="pb-2"></label> -->
+                            <select name="sltype" class="form-control" id="sltype">
+                                <option value="" selected>SL Type</option>
+                                <option value="SL">SL</option>
+                                <option value="SL-M">SL-M</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <!-- <label for="script" class="pb-2"></label> -->
+                            <select name="script" class="form-control script">
+                                <option value="" selected>Script</option>
+                                <option value="NIFTY">NIFTY</option>
+                                <option value="BANKNIFTY">BANKNIFTY</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <label for="strikeprice" class="pb-2">Strike Price</label> -->
+                            <select name="strikeprice" class="form-control bnstrikeprice">
+                                <option value="" selected>Strike Price</option>
+                                <option value="ATM - 1000">ATM - 1000</option>
+                                <option value="ATM - 900">ATM - 900</option>
+                                <option value="ATM - 800">ATM - 800</option>
+                                <option value="ATM - 700">ATM - 700</option>
+                                <option value="ATM - 600">ATM - 600</option>
+                                <option value="ATM - 500">ATM - 500</option>
+                                <option value="ATM - 400">ATM - 400</option>
+                                <option value="ATM - 300">ATM - 300</option>
+                                <option value="ATM - 200">ATM - 200</option>
+                                <option value="ATM - 100">ATM - 100</option>
+                                <option value="ATM">ATM</option>
+                                <option value="ATM + 100">ATM + 100</option>
+                                <option value="ATM + 200">ATM + 200</option>
+                                <option value="ATM + 300">ATM + 300</option>
+                                <option value="ATM + 400">ATM + 400</option>
+                                <option value="ATM + 500">ATM + 500</option>
+                                <option value="ATM + 600">ATM + 600</option>
+                                <option value="ATM + 700">ATM + 700</option>
+                                <option value="ATM + 800">ATM + 800</option>
+                                <option value="ATM + 900">ATM + 900</option>
+                                <option value="ATM + 1000">ATM + 1000</option>
+                            </select>
+                            <select name="strikeprice" class="form-control niftystrikeprice hide">
+                                <option value="" selected>Strike Price</option>
+                                <option value="ATM - 500">ATM - 500</option>
+                                <option value="ATM - 450">ATM - 450</option>
+                                <option value="ATM - 400">ATM - 400</option>
+                                <option value="ATM - 350">ATM - 350</option>
+                                <option value="ATM - 300">ATM - 300</option>
+                                <option value="ATM - 250">ATM - 250</option>
+                                <option value="ATM - 200">ATM - 200</option>
+                                <option value="ATM - 150">ATM - 150</option>
+                                <option value="ATM - 100">ATM - 100</option>
+                                <option value="ATM - 50">ATM - 50</option>
+                                <option value="ATM">ATM</option>
+                                <option value="ATM + 50">ATM + 50</option>
+                                <option value="ATM + 100">ATM + 100</option>
+                                <option value="ATM + 150">ATM + 150</option>
+                                <option value="ATM + 200">ATM + 200</option>
+                                <option value="ATM + 250">ATM + 250</option>
+                                <option value="ATM + 300">ATM + 300</option>
+                                <option value="ATM + 350">ATM + 350</option>
+                                <option value="ATM + 400">ATM + 400</option>
+                                <option value="ATM + 450">ATM + 450</option>
+                                <option value="ATM + 500">ATM + 500</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <!-- <label for="option" class="pb-2"></label> -->
+                            <select name="option" class="form-control" id="option">
+                                <option value="" selected>Type</option>
+                                <option value="CE">CE</option>
+                                <option value="PE">PE</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <!-- <label for="order" class="pb-2"></label> -->
+                            <select name="order" class="form-control" id="order">
+                                <option value="" selected>Order</option>
+                                <option value="BUY">BUY</option>
+                                <option value="SELL">SELL</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <label for="ordertype" class="pb-2">/label> -->
+                            <select name="ordertype" class="form-control" id="ordertype">
+                                <option value="" selected>Order Type</option>
+                                <option value="Intraday">Intraday</option>
+                                <option value="Normal">Normal</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" name="stoploss" class="form-control" placeholder="SL in Points">
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <label for="sltype" class="pb-2"></label> -->
+                            <select name="sltype" class="form-control" id="sltype">
+                                <option value="" selected>SL Type</option>
+                                <option value="SL">SL</option>
+                                <option value="SL-M">SL-M</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <!-- <label for="script" class="pb-2"></label> -->
+                            <select name="script" class="form-control script">
+                                <option value="" selected>Script</option>
+                                <option value="NIFTY">NIFTY</option>
+                                <option value="BANKNIFTY">BANKNIFTY</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <label for="strikeprice" class="pb-2">Strike Price</label> -->
+                            <select name="strikeprice" class="form-control bnstrikeprice">
+                                <option value="" selected>Strike Price</option>
+                                <option value="ATM - 1000">ATM - 1000</option>
+                                <option value="ATM - 900">ATM - 900</option>
+                                <option value="ATM - 800">ATM - 800</option>
+                                <option value="ATM - 700">ATM - 700</option>
+                                <option value="ATM - 600">ATM - 600</option>
+                                <option value="ATM - 500">ATM - 500</option>
+                                <option value="ATM - 400">ATM - 400</option>
+                                <option value="ATM - 300">ATM - 300</option>
+                                <option value="ATM - 200">ATM - 200</option>
+                                <option value="ATM - 100">ATM - 100</option>
+                                <option value="ATM">ATM</option>
+                                <option value="ATM + 100">ATM + 100</option>
+                                <option value="ATM + 200">ATM + 200</option>
+                                <option value="ATM + 300">ATM + 300</option>
+                                <option value="ATM + 400">ATM + 400</option>
+                                <option value="ATM + 500">ATM + 500</option>
+                                <option value="ATM + 600">ATM + 600</option>
+                                <option value="ATM + 700">ATM + 700</option>
+                                <option value="ATM + 800">ATM + 800</option>
+                                <option value="ATM + 900">ATM + 900</option>
+                                <option value="ATM + 1000">ATM + 1000</option>
+                            </select>
+                            <select name="strikeprice" class="form-control niftystrikeprice hide">
+                                <option value="" selected>Strike Price</option>
+                                <option value="ATM - 500">ATM - 500</option>
+                                <option value="ATM - 450">ATM - 450</option>
+                                <option value="ATM - 400">ATM - 400</option>
+                                <option value="ATM - 350">ATM - 350</option>
+                                <option value="ATM - 300">ATM - 300</option>
+                                <option value="ATM - 250">ATM - 250</option>
+                                <option value="ATM - 200">ATM - 200</option>
+                                <option value="ATM - 150">ATM - 150</option>
+                                <option value="ATM - 100">ATM - 100</option>
+                                <option value="ATM - 50">ATM - 50</option>
+                                <option value="ATM">ATM</option>
+                                <option value="ATM + 50">ATM + 50</option>
+                                <option value="ATM + 100">ATM + 100</option>
+                                <option value="ATM + 150">ATM + 150</option>
+                                <option value="ATM + 200">ATM + 200</option>
+                                <option value="ATM + 250">ATM + 250</option>
+                                <option value="ATM + 300">ATM + 300</option>
+                                <option value="ATM + 350">ATM + 350</option>
+                                <option value="ATM + 400">ATM + 400</option>
+                                <option value="ATM + 450">ATM + 450</option>
+                                <option value="ATM + 500">ATM + 500</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <!-- <label for="option" class="pb-2"></label> -->
+                            <select name="option" class="form-control" id="option">
+                                <option value="" selected>Type</option>
+                                <option value="CE">CE</option>
+                                <option value="PE">PE</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <!-- <label for="order" class="pb-2"></label> -->
+                            <select name="order" class="form-control" id="order">
+                                <option value="" selected>Order</option>
+                                <option value="BUY">BUY</option>
+                                <option value="SELL">SELL</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <label for="ordertype" class="pb-2">/label> -->
+                            <select name="ordertype" class="form-control" id="ordertype">
+                                <option value="" selected>Order Type</option>
+                                <option value="Intraday">Intraday</option>
+                                <option value="Normal">Normal</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" name="stoploss" class="form-control" placeholder="SL in Points">
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <label for="sltype" class="pb-2"></label> -->
+                            <select name="sltype" class="form-control" id="sltype">
+                                <option value="" selected>SL Type</option>
+                                <option value="SL">SL</option>
+                                <option value="SL-M">SL-M</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <!-- <label for="script" class="pb-2"></label> -->
+                            <select name="script" class="form-control script">
+                                <option value="" selected>Script</option>
+                                <option value="NIFTY">NIFTY</option>
+                                <option value="BANKNIFTY">BANKNIFTY</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <label for="strikeprice" class="pb-2">Strike Price</label> -->
+                            <select name="strikeprice" class="form-control bnstrikeprice">
+                                <option value="" selected>Strike Price</option>
+                                <option value="ATM - 1000">ATM - 1000</option>
+                                <option value="ATM - 900">ATM - 900</option>
+                                <option value="ATM - 800">ATM - 800</option>
+                                <option value="ATM - 700">ATM - 700</option>
+                                <option value="ATM - 600">ATM - 600</option>
+                                <option value="ATM - 500">ATM - 500</option>
+                                <option value="ATM - 400">ATM - 400</option>
+                                <option value="ATM - 300">ATM - 300</option>
+                                <option value="ATM - 200">ATM - 200</option>
+                                <option value="ATM - 100">ATM - 100</option>
+                                <option value="ATM">ATM</option>
+                                <option value="ATM + 100">ATM + 100</option>
+                                <option value="ATM + 200">ATM + 200</option>
+                                <option value="ATM + 300">ATM + 300</option>
+                                <option value="ATM + 400">ATM + 400</option>
+                                <option value="ATM + 500">ATM + 500</option>
+                                <option value="ATM + 600">ATM + 600</option>
+                                <option value="ATM + 700">ATM + 700</option>
+                                <option value="ATM + 800">ATM + 800</option>
+                                <option value="ATM + 900">ATM + 900</option>
+                                <option value="ATM + 1000">ATM + 1000</option>
+                            </select>
+                            <select name="strikeprice" class="form-control niftystrikeprice hide">
+                                <option value="" selected>Strike Price</option>
+                                <option value="ATM - 500">ATM - 500</option>
+                                <option value="ATM - 450">ATM - 450</option>
+                                <option value="ATM - 400">ATM - 400</option>
+                                <option value="ATM - 350">ATM - 350</option>
+                                <option value="ATM - 300">ATM - 300</option>
+                                <option value="ATM - 250">ATM - 250</option>
+                                <option value="ATM - 200">ATM - 200</option>
+                                <option value="ATM - 150">ATM - 150</option>
+                                <option value="ATM - 100">ATM - 100</option>
+                                <option value="ATM - 50">ATM - 50</option>
+                                <option value="ATM">ATM</option>
+                                <option value="ATM + 50">ATM + 50</option>
+                                <option value="ATM + 100">ATM + 100</option>
+                                <option value="ATM + 150">ATM + 150</option>
+                                <option value="ATM + 200">ATM + 200</option>
+                                <option value="ATM + 250">ATM + 250</option>
+                                <option value="ATM + 300">ATM + 300</option>
+                                <option value="ATM + 350">ATM + 350</option>
+                                <option value="ATM + 400">ATM + 400</option>
+                                <option value="ATM + 450">ATM + 450</option>
+                                <option value="ATM + 500">ATM + 500</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <!-- <label for="option" class="pb-2"></label> -->
+                            <select name="option" class="form-control" id="option">
+                                <option value="" selected>Type</option>
+                                <option value="CE">CE</option>
+                                <option value="PE">PE</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <!-- <label for="order" class="pb-2"></label> -->
+                            <select name="order" class="form-control" id="order">
+                                <option value="" selected>Order</option>
+                                <option value="BUY">BUY</option>
+                                <option value="SELL">SELL</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <label for="ordertype" class="pb-2">/label> -->
+                            <select name="ordertype" class="form-control" id="ordertype">
+                                <option value="" selected>Order Type</option>
+                                <option value="Intraday">Intraday</option>
+                                <option value="Normal">Normal</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" name="stoploss" class="form-control" placeholder="SL in Points">
+                        </div>
+                        <div class="col-sm-2">
+                            <!-- <label for="sltype" class="pb-2"></label> -->
+                            <select name="sltype" class="form-control" id="sltype">
+                                <option value="" selected>SL Type</option>
+                                <option value="SL">SL</option>
+                                <option value="SL-M">SL-M</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row ">
+                        <div class="col-sm-3">
+                            <label for="time">Entry</label><input type="time" name="entrytime" class="form-control"
+                                value="09:40">
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="time">Exit</label><input type="time" name="exittime" class="form-control"
+                                value="15:10">
+                        </div>
+                        <div class="col-sm-3">
+                            <label for=" sltocost"><input type="radio" id="sltocost" name="sltocost" value="true">
+                                Move
+                                SL to
+                                Cost</label>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class=" col-sm-6 d-flex justify-content-center mt-2">
+                            <button type="submit" class="btn btn-success btn-block w-100 py-3 mt-4">Add to
+                                Basket</button>
+                        </div>
+                    </div>
+
+
+                </form>
+                <div class="row">
+                    <div class="col-sm-6  d-flex justify-content-center">
+                        <button type="submit" class="btn btn-light btn-block w-100 my-4">Go to My Basket</button>
+                    </div>
+                </div>
+                <div class="d-block float-right">
+                    <a href="/logout"><button type="button" class="btn btn-danger mr-3 my-3 ">Logout</button></a>
+                    <a href="/reset"><button type="button" class="btn btn-warning mr-3 my-3 ">Reset Key</button></a>
+                    <a href="/select"><button type="submit" class="btn btn-outline-dark my-3">Back</button></a>
+
+                </div>
+            </div>
+            <%- include('./partials/footer') %>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                <script src="../public/js/analyze.js"></script>

@@ -1,0 +1,92 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 768px;
+
+}
+
+.container {
+    min-height: 720px;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+}
+
+.head {
+    font-size: 2rem;
+
+}
+
+.card-modify {
+    min-height: 15rem;
+    min-width: 100%;
+    /* border: 1px solid black; */
+    border-radius: 2%;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.card-title {
+    display: flex;
+    justify-content: space-around;
+}
+
+span {
+    display: block;
+}
+
+.card-title .heading-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card-title .heading-name .top-name {
+    font-weight: 600;
+    font-size: 1.2rem;
+    font-family: 'Raleway', sans-serif;
+}
+
+.card-title .heading-name .bottom-name {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0.6rem 0;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.proceed {
+    width: inherit;
+}
+
+
+
+.icons {
+    display: block;
+    float: right;
+}
+
+.icons>.edit {
+    float: left;
+
+}
+
+.icons>.delete {
+    float: right;
+}
+
+@media only screen and (max-width: 1110px) {
+    tbody {
+        font-size: 0.9rem;
+    }
+}
+
+
+@media only screen and (min-width: 1110px) {
+    .card {
+        min-width: 50%;
+    }
+}
