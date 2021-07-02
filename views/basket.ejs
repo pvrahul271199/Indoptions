@@ -20,78 +20,90 @@
                                 <table class="table table-borderless table-hover text-center">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Script</th>
-                                            <th scope="col">Strike</th>
-                                            <th scope="col">Option</th>
-                                            <th scope="col">Order</th>
-                                            <th scope="col">Type</th>
-                                            <th scope="col">SL</th>
-                                            <th scope="col">Sl-Type</th>
+                                            <th scope="col" class="top-name">Script</th>
+                                            <th scope="col" class="top-name">Strike</th>
+                                            <th scope="col" class="top-name">Lot(s)</th>
+                                            <th scope="col" class="top-name">Option</th>
+                                            <th scope="col" class="top-name">Order</th>
+                                            <th scope="col" class="top-name">Type</th>
+                                            <th scope="col" class="top-name">SL</th>
+                                            <th scope="col" class="top-name">Sl-Type</th>
 
                                         </tr>
                                     </thead>
  <tbody>
         <% for(let j=0; j<person[i].script.length; j++) {%>
             <% if(person[i].script[j] !="" ) {%>
-                <tr>
-                    <th scope="row">
+                    <tr>
+                    <td class="bottom-name">
                         <%= person[i].script[j] %>
-                    </th>
+                    </td>
 
                     <% if(person[i].script[j]=="NIFTY") {%>
-                        <td>
+                        <td class="bottom-name">
                             <%= person[i].strikeprice[(2*j) + 1] %>
                         </td>
 
                     <% }else if(person[i].script[j]=="BANKNIFTY"){ %>
-                        <td>
+                        <td class="bottom-name">
                             <%= person[i].strikeprice[(2*j)] %>
                         </td>
                     <% } %>
 
+                    <% if(person[i].lotsize[j]) {%>
+                        <td class="bottom-name">
+                            <%= person[i].lotsize[j] %>
+                        </td>
+                    <% } else {%>
+
+                        <td class="bottom-name">NA</td>
+                    <% } %>
                     <% if(person[i].option[j]) {%>
-                        <td>
+                        <td class="bottom-name">
                             <%= person[i].option[j] %>
                         </td>
                     <% } else {%>
 
-                        <td>NA</td>
+                        <td class="bottom-name">NA</td>
                     <% } %>
+
+                    
+                    
                     
                     <% if(person[i].order[j]) {%>
-                        <td>
+                        <td class="bottom-name">
                         <%= person[i].order[j] %>
                         </td>
 
                     <% } else {%>
 
-                        <td>NA</td>
+                        <td class="bottom-name">NA</td>
                     <% } %>
 
                     <% if(person[i].ordertype[j]) {%>
-                        <td>
+                        <td class="bottom-name">
                             <%= person[i].ordertype[j]%>
                         </td>
 
                     <% } else {%>
-                        <td>NA
+                        <td class="bottom-name">NA
                         </td>
                     <% } %>
 
                     <% if(person[i].stoploss[j]) {%>
-                        <td>
+                        <td class="bottom-name">
                             <%= person[i].stoploss[j] %>
                         </td>
                     <% } else {%>
-                        <td>NA</td>
+                        <td class="bottom-name">NA</td>
                     <% } %>
 
                     <% if(person[i].sltype[j]) {%>
-                        <td>
+                        <td class="bottom-name">
                             <%= person[i].sltype[j] %>
                         </td>
                         <% } else {%>
-                            <td> NA</td>
+                            <td class="bottom-name"> NA</td>
                     <% } %>
 
         
@@ -102,9 +114,29 @@
 
  </tbody>
  </table>
- </div>
 
-<div class="icons">
+
+  
+
+
+
+ </div>
+<div class="row">
+<div class="col-sm-6">
+
+    <div class="time d-flex justify-content-around align-items-center flex-row">
+        <div class="entry">
+            <div class=" top-name">Entry <span class=" bottom-name"><%= person[i].entrytime %> </span></div>
+        </div>
+        <div class="exit">
+            <div class=" top-name">Exit<span class=" bottom-name"><%= person[i].exittime %> </span></div>
+        </div>
+    </div>
+
+</div>
+<div class="col-sm-6">
+
+        <div class="icons">
                         <div class="edit mx-2">
                             <a href="/edit/<%= person[i]._id %> "><button href="#" type="submit"
                                     class="btn btn-warning"><i class="far fa-edit"></i></button></a>
@@ -115,7 +147,11 @@
                                         class="fas fa-trash-alt"></i></button>
                             </form>
                         </div>
-                    </div>
+            </div>
+
+</div>
+</div>
+
 
  </div>
  </div>

@@ -19,6 +19,9 @@ const userSchema = new mongoose.Schema({
     ordertype: [{
         type: String
     }],
+    lotsize: [{
+        type: Number
+    }],
     stoploss: [{
         type: Number
     }],

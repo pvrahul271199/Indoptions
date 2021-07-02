@@ -6,7 +6,7 @@
 
 body {
     min-height: 768px;
-    font-family: 'Raleway', sans-serif;
+    
 }
 
 .container {
@@ -37,20 +37,13 @@ span {
     display: block;
 }
 
-.card-title .heading-name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.card-title .heading-name .top-name {
+ .top-name {
     font-weight: 600;
     font-size: 1.2rem;
     font-family: 'Raleway', sans-serif;
 }
 
-.card-title .heading-name .bottom-name {
+.bottom-name {
     font-size: 1rem;
     font-weight: 400;
     margin: 0.6rem 0;

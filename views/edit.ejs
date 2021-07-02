@@ -72,6 +72,22 @@
                                 <option value="ATM + 500" <%= person.strikeprice[(2*i)+1]=='ATM + 500' ? 'selected' : "" %> >ATM + 500</option>
                             </select>
                         </div>
+<div class="col-sm-1">
+                            <!-- <label for="sltype" class="pb-2"></label> -->
+                            <select name="lotsize" class="form-control" id="sltype">
+                                <option value="">Lot(s)</option>
+                                <option value="1" <%=  person.lotsize[i]=='1' ? 'selected' : "" %>>1</option>
+                                <option value="2" <%=  person.lotsize[i]=='2' ? 'selected' : "" %>>2</option>
+                                <option value="3" <%=  person.lotsize[i]=='3' ? 'selected' : "" %>>3</option>
+                                <option value="4" <%=  person.lotsize[i]=='4' ? 'selected' : "" %>>4</option>
+                                <option value="5" <%=  person.lotsize[i]=='5' ? 'selected' : "" %>>5</option>
+                                <option value="6" <%=  person.lotsize[i]=='6' ? 'selected' : "" %>>6</option>
+                                <option value="7" <%=  person.lotsize[i]=='7' ? 'selected' : "" %>>7</option>
+                                <option value="8" <%=  person.lotsize[i]=='8' ? 'selected' : "" %>>8</option>
+                                <option value="9" <%=  person.lotsize[i]=='9' ? 'selected' : "" %>>9</option>
+                                <option value="10" <%=  person.lotsize[i]=='10' ? 'selected' : "" %>>10</option>
+                            </select>
+                        </div>
                         <div class="col-sm-1">
                             <!-- <label for="option" class="pb-2"></label> -->
                             <select name="option" class="form-control" id="option">
@@ -99,7 +115,7 @@
                         <div class="col-sm-2">
                             <input type="number" name="stoploss" class="form-control"   value="<%= person.stoploss[i] %>" >
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-1">
                             <!-- <label for="sltype" class="pb-2"></label> -->
                             <select name="sltype" class="form-control" id="sltype">
                                 <option value="">SL Type</option>
@@ -117,11 +133,11 @@
                     <div class="row ">
                         <div class="col-sm-3">
                             <label for="time">Entry</label><input type="time" name="entrytime" class="form-control"
-                                value="09:40">
+                                value="<%=  person.entrytime %>">
                         </div>
                         <div class="col-sm-3">
                             <label for="time">Exit</label><input type="time" name="exittime" class="form-control"
-                                value="15:10">
+                                value="<%=  person.exittime %>">
                         </div>
                         <div class="col-sm-3">
                             <label for=" sltocost"><input type="radio" id="sltocost" name="sltocost" value="true">
@@ -135,8 +151,7 @@
 
                     <div class="row">
                         <div class=" col-sm-6 d-flex justify-content-center mt-2">
-                            <button type="submit" class="btn btn-success btn-block w-100 py-3 mt-4">Add to
-                                Basket</button>
+                            <button type="submit" class="btn btn-success btn-block w-100 py-3 mt-4">Save Changes</button>
                         </div>
                     </div>
 
