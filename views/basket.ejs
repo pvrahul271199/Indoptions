@@ -1,7 +1,8 @@
 <%- include('./partials/header') %>
 
     <head>
-        <link rel="stylesheet" href="../public/css/basket.css">
+        <link rel="stylesheet" href="../public/assets/css/basket.css">
+        
     </head>
 
     <body>
@@ -37,12 +38,12 @@
                         <%= person[i].script[j] %>
                     </th>
 
-                    <% if(person[i].script[j]=="NIFTY" ) {%>
+                    <% if(person[i].script[j]=="NIFTY") {%>
                         <td>
                             <%= person[i].strikeprice[(2*j) + 1] %>
                         </td>
 
-                    <% }else { %>
+                    <% }else if(person[i].script[j]=="BANKNIFTY"){ %>
                         <td>
                             <%= person[i].strikeprice[(2*j)] %>
                         </td>

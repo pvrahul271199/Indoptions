@@ -18,10 +18,10 @@ mongoose.connect("mongodb://localhost:27017/options", {
         useFindAndModify: false
     })
     .then((res) => {
-        console.log("Database Connection Established")
+        // console.log("Database Connection Established")
     })
     .catch((e) => {
-        console.log("Error Obtained")
+        // console.log("Error Obtained")
     })
 
 
@@ -53,7 +53,7 @@ function isFileavailable(req, res, next) {
     const boolean1 = fs.existsSync(file1);
     const boolean2 = fs.existsSync(file2);
     !boolean1 && !boolean2 ? next() : res.redirect('/analyze');
-    console.log(req.user)
+    // console.log(req.user)
 }
 
 function deleteFile(req, res, next) {
@@ -76,7 +76,9 @@ app.get('/details', isLogged,  async (req, res) => {
     const data = await Key.find({
         id
     })
-    console.log(`Hi ${data}`);
+console.log(req.user)
+console.log(id)
+    // console.log(`Hi ${data}`);
     res.render('credentials',{ 
         data
     })
@@ -93,12 +95,13 @@ app.post('/details', isLogged,  async (req, res) => {
          secretkey
      } = req.body;
     const id = req.user.id;
+// console.log(id);
     const data = new Key({
         id,
         apikey,
         secretkey
     })
-console.log(data)
+// console.log(data)
     await data.save();
     res.redirect('/details')
     // res.render('credentials', {data})
@@ -131,8 +134,9 @@ app.get('/analyze', isLogged, (req, res) => { //protected
     const user = req.user;
     const id = user.id;
     const request_token = req.query;
-
-    console.log(id);
+    console.log(id)
+    console.log(user)
+    // console.log(id);
     // fs.writeFileSync(id + ".txt", " ");
     res.render('analyze', {
         user
@@ -153,9 +157,9 @@ app.post('/analyze', isLogged, async (req, res) => {
         sltocost
     } = req.body;
 
-    console.log(option);
+    // console.log(option);
 
-    console.log(req.body)
+    // console.log(req.body)
     const user = req.user;
     const id = user.id;
     const person = new User({
@@ -172,7 +176,7 @@ app.post('/analyze', isLogged, async (req, res) => {
         sltocost
     })
     await person.save();
-    console.log(req.body)
+    // console.log(req.body)
     res.redirect('/analyze')
 })
 
@@ -193,9 +197,9 @@ app.delete('/delete/:id', async (req, res) => {
     const {
         id
     } = req.params;
-    console.log(id);
+    // console.log(id);
     const person = await User.findByIdAndDelete(id);
-    console.log(person)
+    // console.log(person)
     res.redirect('/basket')
 
 })
@@ -205,7 +209,7 @@ app.get('/edit/:id', async (req, res) => {
         id
     } = req.params;
     const person = await User.findById(id);
-    console.log(person)
+    // console.log(person)
     res.render('edit', {
         person
     })
@@ -216,12 +220,12 @@ app.put('/edit/:id', async (req, res) => {
     const {
         id
     } = req.params;
-    // // console.log(req.body);
+    // // // console.log(req.body);
 
     const person = await User.findByIdAndUpdate(id, {
         ...req.body
     })
-    console.log(person)
+    // console.log(person)
     res.redirect('/basket')
 
 })
@@ -236,5 +240,5 @@ app.get('/logout', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(` Server listening at ${port}`)
+    // console.log(` Server listening at ${port}`)
 })

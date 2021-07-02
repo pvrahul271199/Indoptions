@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const keySchema = new mongoose.Schema({
-    id: Number,
+    id: String,
     apikey: String,
     secretkey: String
 })

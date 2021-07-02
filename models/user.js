@@ -34,11 +34,7 @@ const userSchema = new mongoose.Schema({
     sltocost: {
         type: String
     },
-    keys: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Key'
-
-    }]
+    
 });
 
 module.exports = mongoose.model('User', userSchema)
