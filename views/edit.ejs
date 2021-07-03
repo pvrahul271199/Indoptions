@@ -8,12 +8,12 @@
     <body>
         <%- include('./partials/navbar') %>
             <div class="container  d-flex justify-content-center align-items-stretch flex-column">
-                <h2 class="edit">Edit your Option</h2>
+                <h2 class="edit text-center mb-4 display-5">Edit</h2>
                 
             <form action="/edit/<%= person._id %>/?_method=PUT " method="post">
                     <% for(let i=0; i<4; i++){ %>
                     <div class="row">
-                        <div class="col-sm-2">
+                        <div class="col-lg-2 my-2 my-lg-0">
                             <!-- <label for="script" class="pb-2"></label> -->
                             <select name="script" class="form-control script">
                                 <option value="">Script</option>
@@ -21,7 +21,7 @@
                                 <option value="BANKNIFTY" <%= person.script[i]=='BANKNIFTY' ? 'selected' : "" %>>BANKNIFTY</option>
                             </select>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-lg-2 my-2 my-lg-0">
                             <!-- <label for="strikeprice" class="pb-2">Strike Price</label> -->
                             <select name="strikeprice" class="form-control bnstrikeprice ">
                                 <option value="" >Strike Price</option>
@@ -72,7 +72,7 @@
                                 <option value="ATM + 500" <%= person.strikeprice[(2*i)+1]=='ATM + 500' ? 'selected' : "" %> >ATM + 500</option>
                             </select>
                         </div>
-<div class="col-sm-1">
+<div class="col-lg-1 my-2 my-lg-0">
                             <!-- <label for="sltype" class="pb-2"></label> -->
                             <select name="lotsize" class="form-control" id="sltype">
                                 <option value="">Lot(s)</option>
@@ -88,7 +88,7 @@
                                 <option value="10" <%=  person.lotsize[i]=='10' ? 'selected' : "" %>>10</option>
                             </select>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-lg-1 my-2 my-lg-0">
                             <!-- <label for="option" class="pb-2"></label> -->
                             <select name="option" class="form-control" id="option">
                                 <option value="">Type</option>
@@ -96,7 +96,7 @@
                                 <option value="PE" <%= person.option[i]=='PE' ? 'selected' : "" %>>PE</option>
                             </select>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-lg-1 my-2 my-lg-0">
                             <!-- <label for="order" class="pb-2"></label> -->
                             <select name="order" class="form-control" id="order">
                                 <option value="">Order</option>
@@ -104,7 +104,7 @@
                                 <option value="SELL" <%= person.order[i]=='SELL' ? 'selected' : "" %>>SELL</option>
                             </select>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-lg-2 my-2 my-lg-0">
                             <!-- <label for="ordertype" class="pb-2">/label> -->
                             <select name="ordertype" class="form-control" id="ordertype">
                                 <option value="">Order Type</option>
@@ -112,12 +112,20 @@
                                 <option value="Normal" <%= person.ordertype[i]=='Normal' ? 'selected' : "" %>>Normal</option>
                             </select>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-lg-2 my-2 my-lg-0">
+                            <% if(person.stoploss[i]){ %> 
                             <input type="number" name="stoploss" class="form-control"   value="<%= person.stoploss[i] %>" >
+                            
+                            <% } else{%>
+                               
+                            <input type="number" name="stoploss" class="form-control" placeholder="Stoploss" >
+            
+                            <% } %> 
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-lg-1 my-2 my-lg-0">
                             <!-- <label for="sltype" class="pb-2"></label> -->
                             <select name="sltype" class="form-control" id="sltype">
+
                                 <option value="">SL Type</option>
                                 <option value="SL"<%=  person.sltype[i]=='SL' ? 'selected' : "" %>>SL</option>
                                 <option value="SL-M" <%= person.sltype[i]=='SL-M' ? 'selected' : "" %>>SL-M</option>
@@ -131,40 +139,43 @@
 
 
                     <div class="row ">
-                        <div class="col-sm-3">
-                            <label for="time">Entry</label><input type="time" name="entrytime" class="form-control"
+                        <div class="col-lg-3 my-1 my-lg-0">
+                            <label for="time" class="my-2">Entry</label><input type="time" name="entrytime" class="form-control"
                                 value="<%=  person.entrytime %>">
                         </div>
-                        <div class="col-sm-3">
-                            <label for="time">Exit</label><input type="time" name="exittime" class="form-control"
+                        <div class="col-lg-3 my-1 my-lg-0">
+                            <label for="time"class="my-2" >Exit</label><input type="time" name="exittime" class="form-control"
                                 value="<%=  person.exittime %>">
                         </div>
-                        <div class="col-sm-3">
+                       <div class="col-lg-3 mt-4 mb-2 my-lg-0 d-flex justify-content-center">
                             <label for=" sltocost"><input type="radio" id="sltocost" name="sltocost" value="true">
+                               <span cla>
                                 Move
                                 SL to
-                                Cost</label>
+                                Cost
+                                </span>
+                            </label>
 
                         </div>
                     </div>
 
 
-                    <div class="row">
-                        <div class=" col-sm-6 d-flex justify-content-center mt-2">
-                            <button type="submit" class="btn btn-success btn-block w-100 py-3 mt-4">Save Changes</button>
+                    <div class="row mt-5">
+                        <div class=" col-lg-6 d-flex justify-content-center ">
+                            <button type="submit" class="btn btn-success btn-block w-100 py-3 mt-3">Save Changes</button>
                         </div>
                     </div>
 
 
                 </form>
-                <div class="row">
-                    <div class="col-sm-6  d-flex justify-content-center">
-                        <button type="submit" class="btn btn-light btn-block w-100">Go to My Basket</button>
+                <div class="row mt-1">
+                    <div class="col-lg-6  d-flex justify-content-center">
+                        <button type="submit" class="btn btn-light py-2 my-2 w-100">Go to My Basket</button>
                     </div>
                 </div>
-                <div class="d-block float-right">
-
-                    <a href="/basket"><button type="submit" class="btn btn-outline-dark my-3">Back</button></a>
+                <div class="d-flex justify-content-start flex-wrap align-items-center">
+                    <a href="/basket"><button type="button" class="btn btn-outline-dark mr-3 my-3">Back</button></a>
+                    
 
                 </div>
             </div>

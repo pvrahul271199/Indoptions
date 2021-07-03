@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-body {
+main {
     height: 100vh;
     /* min-height: 768px; */
     width: 100%;
@@ -13,7 +13,6 @@ body {
     background-position: 50% 45%;
     background-size: cover;
 }
-
 .title {
     display: flex;
     justify-content: center;
@@ -22,17 +21,33 @@ body {
     height: inherit;
 }
 
+
 .title>.writing {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-
-span {
+.heading {
     font-size: 6rem;
 }
+@media only screen and (max-width: 992px) {
+    .title{
+        align-items: center;
+    }
+    .heading {
+        font-size: 4.2rem;
+    }
+}
 
-p {
+@media only screen and (max-width: 500px) {
+
+    .heading {
+        font-size: 3rem;
+    }
+}
+
+
+.bottom-login {
     font-size: 1.5rem;
 }

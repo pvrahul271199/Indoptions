@@ -5,16 +5,26 @@
     </head>
 
     <body>
+
         <%- include('./partials/navbar') %>
+        <main>
             <div class="container-fluid title ">
                 <div class="writing px-1">
-                    <span>Option Analysis</span>
-                    <p>Login to Use </p>
+                    <span class="heading">Option Analysis</span>
+                    
+                    <% if(data.id) {%>
+                                        <p>Logged in as <%= data.displayName %> </p>
+ <a href="/logout"><button class="btn btn-danger btn-lg">Log Out</button></a>
+                    <% }else{ %>
+                         <p class="bottom-login">Login to Use </p>
+
                     <a href="/auth/google"><button class="btn btn-outline-dark btn-lg">Login with Google</button></a>
+                    <% } %> 
+                   
                 </div>
             </div>
 
-
+        </main>
 
 
 

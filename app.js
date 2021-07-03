@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 const User = require('./models/user')
 const Key = require('./models/key')
 const method = require('method-override');
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
 const app = express();
 require('./auth');
 const port = 80;
@@ -33,6 +35,8 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(method('_method'))
+app.use(mongoSanitize());
+app.use(helmet({contentSecurityPolicy: false}));
 app.use(session({
     secret: 'options1',
     resave: true,
@@ -66,8 +70,14 @@ function deleteFile(req, res, next) {
 }
 
 app.get('/', (req, res) => {
+    if(req.user){
+        const data = req.user;
+        res.render('home',{data})
 
-    res.render("home")
+    } else {
+        const data = {};
+        res.render('home', {data})
+    }
 
 })
 
@@ -142,7 +152,7 @@ app.get('/auth/google',
 
 app.get('/google/callback', //protected
     passport.authenticate('google', {
-        successRedirect: '/select',
+        successRedirect: '/',
         failureRedirect: '/auth/failed'
     })
 )
