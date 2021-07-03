@@ -10,13 +10,14 @@
 
 
             <div class="container d-flex justify-content-start align-items-center flex-column">
-                <div class="head"><i class="fas fa-shopping-cart"></i> My Basket (<%= person.length %>)
+                <div class="head my-3"><i class="fas fa-shopping-cart"></i> My Basket (<%= person.length %>)
                 </div>
-                <% for(let i=0; i< person.length; i++) { %>
 
-                    <div class="card my-2">
-                        <div class="card-body">
-                            <div class="table-responsive-sm">
+
+                <% for(let i=0; i< person.length; i++) { %>
+<div class="card">
+    <div class="card-body">
+                            <div style="overflow-x:auto; width: inherit;">
                                 <table class="table table-borderless table-hover text-center">
                                     <thead>
                                         <tr>
@@ -28,10 +29,12 @@
                                             <th scope="col" class="top-name">Type</th>
                                             <th scope="col" class="top-name">SL</th>
                                             <th scope="col" class="top-name">Type</th>
+                                            <th scope="col" class="top-name">Entry</th>
+                                            <th scope="col" class="top-name">Exit</th>
 
                                         </tr>
                                     </thead>
- <tbody>
+                                    <tbody>
         <% for(let j=0; j<person[i].script.length; j++) {%>
             <% if(person[i].script[j] !="" ) {%>
                     <tr>
@@ -105,6 +108,20 @@
                         <% } else {%>
                             <td class="bottom-name"> NA</td>
                     <% } %>
+                    <% if(person[i].entrytime) {%>
+                        <td class="bottom-name">
+                            <%= person[i].entrytime %>
+                        </td>
+                        <% } else {%>
+                            <td class="bottom-name"> NA</td>
+                    <% } %>
+                    <% if(person[i].exittime) {%>
+                        <td class="bottom-name">
+                            <%= person[i].exittime %>
+                        </td>
+                        <% } else {%>
+                            <td class="bottom-name"> NA</td>
+                    <% } %>
 
         
         
@@ -112,15 +129,10 @@
             <% } %>
         <% } %>
 
- </tbody>
- </table>
+                                    </tbody>
+                                </table>
 
-
-  
-
-
-
- </div>
+                            </div>
 
 
 <div class=" d-flex justify-content-end align-items-end flex-wrap flex-direction-column">
@@ -141,11 +153,8 @@
 </div>
 
 
-
- </div>
- </div>
-
-
+</div>
+</div>
                     
             
             <% } %>
