@@ -16,6 +16,17 @@ body {
     margin-bottom: 6rem;
 }
 
+table{
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+table tbody {
+    display: table;
+    width: 100%;
+}
+
 .head {
     font-size: 2rem;
 
