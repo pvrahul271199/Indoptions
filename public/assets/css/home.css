@@ -3,6 +3,10 @@
     margin: 0;
     box-sizing: border-box;
 }
+body{
+  font-family: 'Raleway', sans-serif;
+
+}
 
 main {
     height: 100vh;
@@ -12,6 +16,7 @@ main {
     background-attachment: fixed;
     background-position: 50% 45%;
     background-size: cover;
+
 }
 .title {
     display: flex;

@@ -1,0 +1,23 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container.mainpage {
+    min-height: 738px;
+  font-family: 'Raleway', sans-serif;
+}
+
+body {
+    min-height: 768px;
+  
+}
+
+.container {
+    min-height: 723px;
+    margin-top: 6rem;
+}
+
+.row>.col-4{
+width: inherit;}

@@ -9,6 +9,7 @@ const Key = require('./models/key')
 const method = require('method-override');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const key = require('./models/key');
 const app = express();
 require('./auth');
 const port = 80;
@@ -46,12 +47,29 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+
+
 function isLogged(req, res, next) {
     req.user ? next() : res.redirect('/auth/google');
 }
 
-function isFileavailable(req, res, next) {
+async function keyAvailable(req,res,next){
     const id = req.user.id;
+    const userKey = await Key.find({id});
+    console.log(userKey)
+    if(userKey.length<1){
+        res.redirect('/details')
+    }else{
+        next();
+    }
+    
+
+}
+function isFileavailable(req, res, next) {
     const file1 = `${id}_key.txt`;
     const file2 = `${id}_secret.txt`;
     const boolean1 = fs.existsSync(file1);
@@ -70,23 +88,25 @@ function deleteFile(req, res, next) {
 }
 
 app.get('/', (req, res) => {
+// console.log(req.user)
+// console.log(res.locals.user)
     if(req.user){
         const data = req.user;
         res.render('home',{data})
 
     } else {
+
         const data = {};
         res.render('home', {data})
     }
 
 })
 
-app.get('/details', isLogged,  async (req, res) => {
+app.get('/details', isLogged, async (req, res) => {
     const id = req.user.id;
     const data = await Key.find({
         id
     });
-    console.log(data)
     if(data.length>0){
     console.log("Inside credentials")
        res.render('credentials',{ 
@@ -122,9 +142,9 @@ app.post('/details', isLogged,  async (req, res) => {
         apikey,
         secretkey
     })
- console.log(data)
+    console.log(data)
     await data.save();
-    res.redirect('/details')
+    res.redirect('/analyze')
     // res.render('credentials', {data})
 });
     
@@ -151,17 +171,16 @@ app.get('/auth/google',
 )
 
 app.get('/google/callback', //protected
+
     passport.authenticate('google', {
-        successRedirect: '/',
+        successRedirect: '/analyze',
         failureRedirect: '/auth/failed'
     })
 )
 
-app.get('/select', (req, res) => {
-    res.render('select')
-})
 
-app.get('/analyze', isLogged, (req, res) => { //protected
+
+app.get('/analyze', isLogged, keyAvailable,(req, res) => { //protected
     const user = req.user;
     const id = user.id;
     const request_token = req.query;
@@ -215,7 +234,7 @@ app.post('/analyze', isLogged, async (req, res) => {
 
 
 
-app.get('/basket', isLogged, async (req, res) => {
+app.get('/basket', isLogged, keyAvailable, async (req, res) => {
     const id = req.user.id;
     const person = await User.find({
         id
@@ -236,7 +255,10 @@ app.delete('/delete/:id', async (req, res) => {
     res.redirect('/basket')
 
 })
+app.get('/hi' , (req,res) => {
 
+    res.render('order')
+    })
 app.get('/edit/:id', async (req, res) => {
     const {
         id
@@ -263,6 +285,25 @@ app.put('/edit/:id', async (req, res) => {
 
 })
 
+app.get('/schedule',isLogged, async(req,res) => {
+    const id = req.user.id;
+    // console.log(id);
+    const user = await Key.find({id})
+    const {broker, apikey, secretkey} = user[0];
+    const url = `https://kite.trade/connect/login?api_key=${apikey}&v=3`
+    res.redirect(url);
+})
+
+app.get('/request', isLogged, (req,res) => {
+    const id = req.user.id;
+    console.log(req.query);
+    const token = req.query.request_token;
+    const file = `${id}_${token}.txt`;
+    fs.writeFileSync(file, token)
+    // console.log(req.query.request_token);
+    res.render('order')
+})
+
 app.get('/auth/failed', (req, res) => { //protected
     res.send('Auth Failed')
 })
@@ -273,5 +314,5 @@ app.get('/logout', (req, res) => {
 })
 
 app.listen(port, () => {
-    // // console.log(` Server listening at ${port}`)
+ console.log(` Server listening at ${port}`)
 })
