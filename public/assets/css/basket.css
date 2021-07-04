@@ -16,6 +16,19 @@ body {
     margin-bottom: 6rem;
 }
 
+<<<<<<< HEAD
+=======
+table{
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+table tbody {
+    display: table;
+    width: 100%;
+}
+>>>>>>> 2945113b4d33e2f495c5b5a020bf5e663ffa84c3
 
 .head {
     font-size: 2rem;
