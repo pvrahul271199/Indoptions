@@ -25,7 +25,6 @@
                                             <th scope="col" class="top-name">Strike</th>
                                             <th scope="col" class="top-name">Lot(s)</th>
                                             <th scope="col" class="top-name">Option</th>
-                                            <th scope="col" class="top-name">Expiry</th>
                                             <th scope="col" class="top-name">Order</th>
                                             <th scope="col" class="top-name">Type</th>
                                             <th scope="col" class="top-name">SL</th>
@@ -65,14 +64,6 @@
                     <% if(person[i].option[j]) {%>
                         <td class="bottom-name">
                             <%= person[i].option[j] %>
-                        </td>
-                    <% } else {%>
-
-                        <td class="bottom-name">NA</td>
-                    <% } %>
-                    <% if(person[i].expiry[j]) {%>
-                        <td class="bottom-name">
-                            <%= person[i].expiry[j] %>
                         </td>
                     <% } else {%>
 
@@ -171,7 +162,7 @@
  <div class="row proceed d-flex justify-content-center align-items-center">
                     <div class="col-8 d-flex justify-content-center align-items-center ">
                         <form action="/schedule" method="get">
-                        <button type="submit"  class="btn btn-success mt-3" style="width: inherit;"><a href="/schedule" ></a>Approve for Today</button>
+                        <button type="submit"  class="btn btn-success mt-3" style="width: inherit;"><a href="/schedule" ></a>Approve for Trade</button>
 </form>                    
 </div>
                 </div>

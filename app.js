@@ -195,10 +195,7 @@ app.get('/analyze', isLogged, keyAvailable,(req, res) => { //protected
     const user = req.user;
     const id = user.id;
     const request_token = req.query;
-    // console.log(id)
-    // console.log(user)
-    // // console.log(id);
-    // fs.writeFileSync(id + ".txt", " ");
+
     res.render('analyze', {
         user
     });
@@ -209,6 +206,7 @@ app.post('/analyze', isLogged, async (req, res) => {
         script,
         strikeprice,
         option,
+        expiry,
         order,
         ordetype,
         lotsize,
@@ -229,6 +227,7 @@ app.post('/analyze', isLogged, async (req, res) => {
         script,
         strikeprice,
         option,
+        expiry,
         order,
         ordetype,
         lotsize,

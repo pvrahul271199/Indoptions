@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
     option: [{
         type: String
     }],
+
+    expiry: [{
+        type: String
+    }],
     order: [{
         type: String
     }],
