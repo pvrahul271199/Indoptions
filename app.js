@@ -87,6 +87,17 @@ function deleteFile(req, res, next) {
     next();
 }
 
+app.get('/request', isLogged, (req,res) => {
+    const id = req.user.id;
+    console.log(req.query);
+    const token = req.query.request_token;
+    const file = `${id}_token.txt`;
+    fs.writeFileSync(file, token)
+    // console.log(req.query.request_token);
+    res.render('order')
+})
+
+
 app.get('/', (req, res) => {
 // console.log(req.user)
 // console.log(res.locals.user)
@@ -294,15 +305,7 @@ app.get('/schedule',isLogged, async(req,res) => {
     res.redirect(url);
 })
 
-app.get('/request', isLogged, (req,res) => {
-    const id = req.user.id;
-    console.log(req.query);
-    const token = req.query.request_token;
-    const file = `${id}_${token}.txt`;
-    fs.writeFileSync(file, token)
-    // console.log(req.query.request_token);
-    res.render('order')
-})
+
 
 app.get('/auth/failed', (req, res) => { //protected
     res.send('Auth Failed')

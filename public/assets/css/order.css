@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body{
+    font-family: 'Raleway', sans-serif;
+}
+
 .container.mainpage {
     min-height: 738px;
   font-family: 'Raleway', sans-serif;
