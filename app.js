@@ -127,10 +127,13 @@ app.post('/details', isLogged,  async (req, res) => {
         broker,
          secretkey
      } = req.body;
+    const user = req.user;
     const id = req.user.id;
     const data = new Key({
         id,
         broker,
+        name: user.displayName,
+        email: user.email,
         apikey,
         secretkey
     })

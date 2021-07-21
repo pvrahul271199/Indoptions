@@ -20,16 +20,13 @@ mongoose.connect(process.env.mongodb_url, {
 
 const retrieve = async () => {
      const user = await User.find({});
-     // console.log(user);
      const keys = await Key.find({});
-     // console.log(keys);
+     
      let combined = {user,...keys};
      console.log(combined);
 }
 
 retrieve();
-
-
 
 app.listen(3000, (req,res) => {
      console.log("Server is Listening")
