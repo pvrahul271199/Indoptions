@@ -57,11 +57,20 @@ input[type='radio'] {
 display: none;
 }
 
-
+.heading-small{
+    display: none;
+}
 
 
 @media only screen and (max-width: 991px) {
     .row {
         height: auto;
+    }
+    .heading-small{
+        display: block;
+        text-align: center;
+        margin: 6px 0;
+        font-weight: 460;
+        font-size: 1.5rem;
     }
 }
