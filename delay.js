@@ -5,7 +5,7 @@ const User = require('./models/user')
 const Key = require('./models/key')
 const dotenv = require('dotenv').config();
 
-mongoose.connect("mongodb://arun:arunnair@indoptions-shard-00-00.mgxnp.mongodb.net:27017,indoptions-shard-00-01.mgxnp.mongodb.net:27017,indoptions-shard-00-02.mgxnp.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-aykcp9-shard-0&authSource=admin&retryWrites=true&w=majority", {
+mongoose.connect(process.env.mongodb_url, {
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
