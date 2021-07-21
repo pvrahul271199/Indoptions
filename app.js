@@ -9,14 +9,13 @@ const Key = require('./models/key')
 const method = require('method-override');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
-const flash = require('connect-flash');
-const key = require('./models/key');
 const app = express();
+const dotenv = require('dotenv').config();
 require('./auth');
 
 const port = 80;
 
-mongoose.connect("mongodb://localhost:27017/options", {
+mongoose.connect(process.env.mongodb_url, {
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
@@ -27,7 +26,7 @@ mongoose.connect("mongodb://localhost:27017/options", {
     })
     .catch((e) => {
          console.log("Error Obtained")
-    })
+})
 
 
 app.set('views', path.join(__dirname, 'views'))
@@ -149,17 +148,19 @@ app.delete('/key/delete/:id', async (req, res) => {
     res.redirect("/details")
 })
 
-app.get('/analyze', isLogged, keyAvailable,(req, res) => { //protected
+app.get('/analyze', isLogged, keyAvailable, async (req, res) => { //protected
     const user = req.user;
     const id = user.id;
-    const request_token = req.query;
+
+
     res.render('analyze', {
         user
     });
 })
 
 app.post('/analyze', isLogged, keyAvailable,async (req, res) => {
-    const {
+        
+const {
         script,
         strikeprice,
         option,
@@ -178,6 +179,8 @@ app.post('/analyze', isLogged, keyAvailable,async (req, res) => {
     const id = user.id;
     const person = new User({
         id,
+        name: user.displayName,
+        email: user.email,
         script,
         strikeprice,
         option,
@@ -242,17 +245,22 @@ app.get('/schedule',isLogged, async(req,res) => {
     res.redirect(url);
 })
 
-app.get('/request', isLogged, (req,res) => {
+app.get('/request', isLogged, async (req,res) => {
     const id = req.user.id;
-    console.log(req.query);
     const token = req.query.request_token;
-    const file = `${id}_token.txt`;
-    fs.writeFileSync(file, token)
-    // console.log(req.query.request_token);
+    const user = await Key.findOneAndUpdate(id, {
+         $set: {
+        req_token: token
+        }}
+    )   
+    // await userKey.save();
+    console.log(user);
+    // const file = `${id}_token.txt`;
+    // fs.writeFileSync(file, token)
     res.render('order')
 })
 
 
 app.listen(port, () => {
- console.log(` Server listening at ${port}`)
+ console.log(`Server listening at ${port}`)
 })

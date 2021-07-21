@@ -3,6 +3,12 @@ const Key = require('./key');
 
 const userSchema = new mongoose.Schema({
     id: String,
+    name: {
+        type: String
+    },
+    email: {
+        type: String
+    },
     script: [{
         type: String
     }],
@@ -41,7 +47,8 @@ const userSchema = new mongoose.Schema({
     sltocost: {
         type: String
     },
-    
-});
+},
+    {timestamps: true}
+);
 
 module.exports = mongoose.model('User', userSchema)
