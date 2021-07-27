@@ -19,7 +19,7 @@
                         <p class="heading-small">Script 1</p>
                         <div class="col-lg-2 my-2 my-lg-0">
                             <!-- <label for="script" class="pb-2"></label> -->
-                            <select name="script" class="form-control script">
+                            <select name="script" class="form-control script" required>
                                 <option value="" selected>Script</option>
                                 <option value="NIFTY">NIFTY</option>
                                 <option value="BANKNIFTY">BANKNIFTY</option>
@@ -81,7 +81,7 @@
 
                     <div class="col-lg-1 my-2 my-lg-0">
                             <!-- <label for="sltype" class="pb-2"></label> -->
-                            <select name="lotsize" class="form-control" id="sltype">
+                            <select name="lotsize" class="form-control" id="sltype" required>
                                 <option value="" selected>Lot(s)</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -97,7 +97,7 @@
                         </div>
                         <div class="col-lg-1 my-2 my-lg-0">
                             <!-- <label for="option" class="pb-2"></label> -->
-                            <select name="expiry" class="form-control" id="expiry">
+                            <select name="expiry" class="form-control" id="expiry" required>
                                 <option value="" selected>Expiry</option>
                                 <option value="Weekly">Weekly</option>
                                 <option value="Monthly">Monthly</option>
@@ -105,7 +105,7 @@
                         </div>
                         <div class="col-lg-1 my-2 my-lg-0">
                             <!-- <label for="option" class="pb-2"></label> -->
-                            <select name="option" class="form-control" id="option">
+                            <select name="option" class="form-control" id="option" required>
                                 <option value="" selected>Type</option>
                                 <option value="CE">CE</option>
                                 <option value="PE">PE</option>
@@ -113,7 +113,7 @@
                         </div>
                         <div class="col-lg-1 my-2 my-lg-0">
                             <!-- <label for="order" class="pb-2"></label> -->
-                            <select name="order" class="form-control" id="order">
+                            <select name="order" class="form-control" id="order" required>
                                 <option value="" selected>Order</option>
                                 <option value="BUY">BUY</option>
                                 <option value="SELL">SELL</option>
@@ -121,18 +121,18 @@
                         </div>
                         <div class="col-lg-1 my-2 my-lg-0">
                             <!-- <label for="ordertype" class="pb-2">/label> -->
-                            <select name="ordertype" class="form-control" id="ordertype">
+                            <select name="ordertype" class="form-control" id="ordertype" required>
                                 <option value="" selected>Order Type</option>
                                 <option value="Intraday">Intraday</option>
                                 <option value="Normal">Normal</option>
                             </select>
                         </div>
                         <div class="col-lg-2 my-2 my-lg-0">
-                            <input type="number" name="stoploss" class="form-control" placeholder="SL in Points">
+                            <input type="number" name="stoploss" class="form-control" placeholder="SL in Points" required>
                         </div>
                         <div class="col-lg-1 my-2 my-lg-0">
                             <!-- <label for="sltype" class="pb-2"></label> -->
-                            <select name="sltype" class="form-control" id="sltype">
+                            <select name="sltype" class="form-control" id="sltype" required>
                                 <option value="" selected>SL Type</option>
                                 <option value="SL">SL</option>
                                 <option value="SL-M">SL-M</option>

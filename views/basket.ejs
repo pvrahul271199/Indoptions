@@ -15,7 +15,7 @@
 
 
                 <% for(let i=0; i< person.length; i++) { %>
-<div class="card">
+<div class="card mt-3">
     <div class="card-body">
                             <div style="overflow-x:auto; width: inherit;">
                                 <table class="table table-borderless table-hover text-center">
@@ -170,9 +170,15 @@
 
  <div class="row proceed d-flex justify-content-center align-items-center">
                     <div class="col-8 d-flex justify-content-center align-items-center ">
+                    <% if(person[0]) {%>
                         <form action="/schedule" method="get">
                         <button type="submit"  class="btn btn-success mt-3" style="width: inherit;"><a href="/schedule" ></a>Approve for Today</button>
-</form>                    
+                    </form>
+                <%}else{%>
+                
+                    <a href="/analyze"><button type="submit" class="btn btn-success mt-3" style="width: inherit;">Basket is Empty !
+                            Click to add</button></a>
+                    <% } %>
 </div>
                 </div>
 
