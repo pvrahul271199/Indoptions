@@ -7,7 +7,7 @@ let niftystrikeprice = document.querySelectorAll('.niftystrikeprice');
 
 // }
 
-$('.script').on('click', function () {
+$('.script').on('change', function () {
 for(let i =0;i<4; i++){
 console.log($('.script').val())
     if ($(this).val() == 'NIFTY') {
