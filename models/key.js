@@ -7,7 +7,7 @@ const keySchema = new mongoose.Schema({
     broker: String,
     apikey: String,
     secretkey: String,
-    req_token: String
+    url: String
 },
     {timestamps: true}
 )

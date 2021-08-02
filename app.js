@@ -244,26 +244,58 @@ app.get('/schedule',isLogged, async(req,res) => {
     const id = req.user.id;
     const user = await Key.find({id})
     const {broker, apikey, secretkey} = user[0];
-    const url = `https://kite.trade/connect/login?api_key=${apikey}&v=3`
-    res.redirect(url);
+    console.log(broker)
+    if(broker=='Zerodha'){
+        const url = `https://kite.trade/connect/login?api_key=${apikey}&v=3`
+        res.redirect(url);
+    }else if(broker=='Angel'){
+        const url = `https://smartapi.angelbroking.com/publisher-login?api_key=${apikey}`
+        res.redirect(url);
+    }else if(broker=='AliceBlue'){
+        const url = `https://ant.aliceblueonline.com/oauth2/auth?response_type=code&state=test_state&client_id=${apikey}`
+        res.redirect(url);
+    }
 })
 
 app.get('/request', isLogged, async (req,res) => {
     const id = req.user.id;
-    const token = req.query.request_token;
-    const user = await Key.findOneAndUpdate(id, {
-         $set: {
-        req_token: token
-        }}
-    )   
-    // await userKey.save();
-    console.log(user);
-    // const file = `${id}_token.txt`;
-    // fs.writeFileSync(file, token)
-    res.render('order')
+    const user = await Key.find({id})
+    const {broker} = user[0];
+    if(broker=='Zerodha'){
+        const {request_token, action,status} = req.query; 
+        const url_token = `https://www.algoindex.tech/request?request_token=${request_token}&action=${action}&status=${status}`;
+        const user = await Key.findOneAndUpdate(id, {
+            $set: {
+                url: url_token
+            }}
+        )           
+        res.render('order')
+
+    }else if(broker=='Angel'){
+        const {auth_token,feed_token,refresh_token} = req.query; 
+        const url_token = `https://www.algoindex.tech/request?auth_token=${auth_token}&feed_token=${feed_token}&refresh_token=${refresh_token}`;
+        const user = await Key.findOneAndUpdate(id, {
+            $set: {
+                url: url_token
+            }}
+        )     
+        res.render('order')
+
+    }else if(broker=='AliceBlue'){
+        const {code,scope,} = req.query; 
+        const url_token = `https://www.algoindex.tech/request?code=${code}`;
+        const user = await Key.findOneAndUpdate(id, {
+            $set: {
+                url: url_token
+            }}
+        )  
+        res.render('order')
+    }
 })
 
 
 app.listen(port, () => {
  console.log(`Server listening at ${port}`)
 })
+
+
